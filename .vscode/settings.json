@@ -1,0 +1,12 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^cd /workspaces/skills-integrate-mcp-with-copilot && python3 -m py_compile src/app\\.py && echo \"✅ Python syntax check passed\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^cd /workspaces/skills-integrate-mcp-with-copilot && git add \\.$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

@@ -10,9 +10,51 @@
     <header>
       <h1>Mergington High School</h1>
       <h2>Extracurricular Activities</h2>
+      <div class="user-section">
+        <button id="login-btn" class="login-button">👤 Login</button>
+        <div id="user-info" class="user-info hidden">
+          <span id="username-display"></span>
+          <button id="logout-btn" class="logout-button">Logout</button>
+        </div>
+      </div>
     </header>
 
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Teacher Login</h3>
+        <form id="login-form">
+          <div class="form-group">
+            <label for="login-username">Username:</label>
+            <input type="text" id="login-username" required />
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password:</label>
+            <input type="password" id="login-password" required />
+          </div>
+          <button type="submit">Login</button>
+        </form>
+        <div id="login-message" class="hidden"></div>
+      </div>
+    </div>
+
     <main>
+      <!-- Filter and Search Toolbar -->
+      <section id="toolbar-container">
+        <div class="toolbar">
+          <input type="text" id="search-input" placeholder="Search activities..." />
+          <select id="category-filter">
+            <option value="">All Categories</option>
+          </select>
+          <select id="sort-by">
+            <option value="name">Sort by Name</option>
+            <option value="time">Sort by Time</option>
+          </select>
+          <button id="reset-filters" class="reset-btn">Reset Filters</button>
+        </div>
+      </section>
+
       <section id="activities-container">
         <h3>Available Activities</h3>
         <div id="activities-list">
@@ -21,12 +63,50 @@
         </div>
       </section>
 
-      <section id="signup-container">
-        <h3>Sign Up for an Activity</h3>
+      <!-- Admin Section (only visible when logged in) -->
+      <section id="admin-container" class="hidden">
+        <h3>Teacher Management Panel</h3>
+        <div id="admin-content">
+          <button id="toggle-add-form" class="toggle-btn">Add New Activity</button>
+          <form id="add-activity-form" class="hidden">
+            <h4>Add New Activity</h4>
+            <div class="form-group">
+              <label for="activity-name">Activity Name:</label>
+              <input type="text" id="activity-name" required />
+            </div>
+            <div class="form-group">
+              <label for="activity-description">Description:</label>
+              <textarea id="activity-description" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="activity-schedule">Schedule:</label>
+              <input type="text" id="activity-schedule" required />
+            </div>
+            <div class="form-group">
+              <label for="activity-max">Max Participants:</label>
+              <input type="number" id="activity-max" required min="1" />
+            </div>
+            <div class="form-group">
+              <label for="activity-category">Category:</label>
+              <select id="activity-category" required>
+                <option value="">-- Select category --</option>
+                <option value="sports">Sports</option>
+                <option value="academic">Academic</option>
+                <option value="arts">Arts</option>
+              </select>
+            </div>
+            <button type="submit">Add Activity</button>
+            <button type="button" id="cancel-add-form" class="cancel-btn">Cancel</button>
+          </form>
+        </div>
+      </section>
+
+      <section id="signup-container" class="hidden">
+        <h3>Manage Student Registrations</h3>
         <form id="signup-form">
           <div class="form-group">
             <label for="email">Student Email:</label>
-            <input type="email" id="email" required placeholder="your-email@mergington.edu" />
+            <input type="email" id="email" required placeholder="student-email@mergington.edu" />
           </div>
           <div class="form-group">
             <label for="activity">Select Activity:</label>
@@ -35,7 +115,8 @@
               <!-- Activity options will be loaded here -->
             </select>
           </div>
-          <button type="submit">Sign Up</button>
+          <button type="submit">Register Student</button>
+          <button type="button" id="cancel-signup" class="cancel-btn">Cancel</button>
         </form>
         <div id="message" class="hidden"></div>
       </section>
